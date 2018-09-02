@@ -7,6 +7,7 @@ import javax.swing.*;
 import java.util.Calendar;
 PImage pic;
 boolean rotateIt = false;
+boolean pinot = true;
 PImage scrShot;
 PImage sqrSource;
 PGraphics buf;
@@ -42,6 +43,9 @@ void draw() {
   for (int i=0; i < fac/2; i++) {
     rotate(2*TWO_PI/fac);
     image(mesh, 0,0);
+  }
+  if (pinot) {
+    SetCorners();
   }
 }
 
@@ -97,6 +101,10 @@ void keyPressed() {
   }
   if (key =='2') {
     fac += 2;
+    redraw();
+  }
+  if (key == 'c'|| key == 'C') {
+    pinot = !pinot;
     redraw();
   }
 }
