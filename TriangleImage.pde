@@ -37,17 +37,72 @@ void CreateTriangle() {
   float zavit=abs(tan(TWO_PI/fac));
 
   buf.triangle(float(width)/2, float(height), 
-  float(width)/2 - (float(height)/2)*zavit, height/2, 
-  float(width)/2 +  (float(height)/2)*zavit, height/2);
-/*
+    float(width)/2 - (float(height)/2)*zavit, height/2, 
+    float(width)/2 +  (float(height)/2)*zavit, height/2);
+  /*
   buf.triangle(float(width)/2, 0.0, 
-  float(width)/2 - (float(height)/2)*zavit, height/2, 
-  float(width)/2 +  (float(height)/2)*zavit, height/2);
-*/
-  buf.rect(float(width)/2 - (float(height)/2)*zavit, 0.0,
-  float(width)/2 +  (float(height)/2)*zavit, height/2);
+   float(width)/2 - (float(height)/2)*zavit, height/2, 
+   float(width)/2 +  (float(height)/2)*zavit, height/2);
+   */
+  buf.rect(float(width)/2 - (float(height)/2)*zavit, 0.0, 
+    float(width)/2 +  (float(height)/2)*zavit, height/2);
   mesh.updatePixels();
   maskImage = buf.get();
   mesh.mask(maskImage);
 }
 
+void SetCorners() {
+  int zela = int(width/4);
+  translate (-width/2, -height/2);
+
+  // 1st corner
+  PImage ribua = get(width -zela, 0, zela, zela);
+/*
+  noStroke();
+  fill(0, 100, 100);
+  ellipse(width -zela, 0, 18, 18);
+  fill(210, 90, 60);
+  ellipse(0, 0, 18, 18);
+  fill(0, 60, 190);
+  ellipse(width -zela, height -zela, 18, 18);
+  fill(100, 160, 20);
+  ellipse(0, height -zela, 18, 18);
+*/
+  for (int ix= 0; ix < zela; ix++) {
+    for (int iy= 0; iy < zela; iy++) {
+      if (ix < iy)
+        ribua.set(iy, ix, ribua.get(ix, iy));
+    }
+  }
+  image(ribua, width -zela/2, zela/2);
+
+  //2nd corner
+  ribua = get(0, 0, zela, zela);
+  for (int ix= 0; ix < zela; ix++) {
+    for (int iy= 0; iy < zela; iy++) {
+      if (zela -ix >  iy)
+        ribua.set(iy, ix, ribua.get(zela -ix, zela - iy));
+    }
+  }
+  image(ribua, zela/2, zela/2);
+
+  // 3rd corner
+  ribua = get(width -zela, height -zela, zela, zela);
+  for (int ix= 0; ix < zela; ix++) {
+    for (int iy= 0; iy < zela; iy++) {
+      if (ix > zela - iy)
+        ribua.set(iy, ix, ribua.get(zela -ix, zela - iy));
+    }
+  }
+  image(ribua, width -zela/2, height -zela/2);
+
+  // 4th corner
+  ribua = get(0, height -zela, zela, zela);
+  for (int ix= 0; ix < zela; ix++) {
+    for (int iy= 0; iy < zela; iy++) {
+      if (ix < iy)
+        ribua.set(ix, iy, ribua.get(iy, ix));
+    }
+  }
+  image(ribua, zela/2, height -zela/2);
+}
