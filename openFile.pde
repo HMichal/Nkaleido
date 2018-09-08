@@ -1,9 +1,7 @@
 PImage original; 
 String ogiName = "";
-JFileChooser fc; 
 
 int openFileAndGetImage() {
-
   // in response to a button click: 
   int returnVal = fc.showOpenDialog(null); 
 
