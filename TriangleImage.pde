@@ -83,7 +83,7 @@ void SetCorners() {
   for (int ix= 0; ix < zela; ix++) {
     for (int iy= 0; iy < zela; iy++) {
       if (zela -ix >=  iy)
-        ribua.set(iy, ix, ribua.get(zela -ix, zela - iy));
+        ribua.set(iy, ix, ribua.get(zela -ix -1, zela - iy -1));
     }
   }
   image(ribua, zela/2, zela/2);
