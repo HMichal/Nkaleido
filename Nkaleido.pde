@@ -16,6 +16,7 @@ boolean shouldRotate=false;
 
 color bg = 0;
 int fac = 16;
+JFileChooser fc;
 
 /////// setup ///////////////
 void setup() {
@@ -24,7 +25,7 @@ void setup() {
   //toCopyImg = createGraphics(2*width,2*height);
   imageMode(CENTER);
   smooth();
-  fc = new JFileChooser();
+  fc = new JFileChooser("/home/michal/Pictures");
   if (openFileAndGetImage() == 0)
     exit();
   background(bg);
