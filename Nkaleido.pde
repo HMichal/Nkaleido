@@ -4,7 +4,6 @@
  **** On 28 July 2015
  **********************************/
 import javax.swing.*; 
-import java.util.Calendar;
 PImage pic;
 boolean rotateIt = false;
 boolean pinot = true;
@@ -13,6 +12,7 @@ PImage sqrSource;
 PGraphics buf;
 PGraphics toCopyImg;
 boolean shouldRotate=false;
+int qrSize;
 
 color bg = 0;
 int fac = 16;
@@ -20,8 +20,9 @@ JFileChooser fc;
 
 /////// setup ///////////////
 void setup() {
-  size(800, 800);
-  buf = createGraphics(width, 2*height);
+  size(1280, 720); //size(800, 800);
+  qrSize = max(width, height);
+  buf = createGraphics(qrSize, 2*qrSize);
   //toCopyImg = createGraphics(2*width,2*height);
   imageMode(CENTER);
   smooth();
@@ -52,8 +53,8 @@ void draw() {
 
 public void initit() {
   buf.beginDraw();
-  sqrSource = original.get(int(random(original.width-width/2)),
-    int(random(original.height - height/2)),width/2, height/2);
+  sqrSource = original.get(int(random(original.width-qrSize/2)),
+    int(random(original.height - qrSize/2)),qrSize/2, qrSize/2);
   background(bg);
 }
 
@@ -108,11 +109,4 @@ void keyPressed() {
     pinot = !pinot;
     redraw();
   }
-}
-
-
-// timestamp
-String timestamp() {
-  Calendar now = Calendar.getInstance();
-  return String.format("%1$ty%1$tm%1$td_%1$tH%1$tM%1$tS", now);
 }
