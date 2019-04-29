@@ -5,13 +5,12 @@
  **********************************/
 import javax.swing.*; 
 PImage pic;
-boolean rotateIt = false;
-boolean pinot = true;
 PImage scrShot;
 PImage sqrSource;
 PGraphics buf;
 PGraphics toCopyImg;
 boolean shouldRotate=false;
+boolean pinot = false;
 int qrSize;
 
 color bg = 0;
@@ -20,7 +19,7 @@ JFileChooser fc;
 
 /////// setup ///////////////
 void setup() {
-  size(800,800); //(1280, 720); //(2048, 1152);//(1200,900); 
+  size (900, 700); //(1280, 720)//size(800, 800);
   qrSize = max(width, height);
   buf = createGraphics(qrSize, 2*qrSize);
   //toCopyImg = createGraphics(2*width,2*height);
@@ -49,11 +48,6 @@ void draw() {
   if (pinot) {
     SetCorners();
   }
-  // setup circle in the middle
-  color ccm = get(width/2, height/2);
-  fill(ccm);
-  noStroke();
-  ellipse(width/2.0, height/2.0, 16.0,16.0);
 }
 
 public void initit() {
