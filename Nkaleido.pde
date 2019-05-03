@@ -48,6 +48,11 @@ void draw() {
   if (pinot) {
     SetCorners();
   }
+  // setup circle in the middle
+  color ccm = get(width/2, height/2);
+  fill(ccm);
+  noStroke();
+  ellipse(width/2.0, height/2.0, 16.0,16.0);
 }
 
 public void initit() {
