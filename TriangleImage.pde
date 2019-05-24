@@ -47,14 +47,16 @@ void CreateTriangle() {
   mesh.mask(maskImage);
 }
 
+// ************************* Set new Corners ******************8
 void SetCorners() {
+  pushMatrix();
   float fzela = (sqrt(2) - 1) * width/2;
   int zela = int(fzela);
   if (zela % 2 == 1) zela++;
   translate (-width/2, -height/2);
 
   // 1st corner
-  PImage ribua = get(qrSize -zela, 0, zela, zela);
+  PImage ribua = get(width -zela, 0, zela, zela);
 
   for (int ix= 0; ix < zela; ix++) {
     for (int iy= 0; iy < zela; iy++) {
@@ -62,7 +64,7 @@ void SetCorners() {
         ribua.set(iy, ix, ribua.get(ix, iy));
     }
   }
-  image(ribua, qrSize -zela/2, zela/2);
+  image(ribua, width -zela/2, zela/2);
 
   //2nd corner
   ribua = get(0, 0, zela, zela);
@@ -75,22 +77,23 @@ void SetCorners() {
   image(ribua, zela/2, zela/2);
 
   // 3rd corner
-  ribua = get(qrSize -zela, qrSize -zela, zela, zela);
+  ribua = get(width -zela, height -zela, zela, zela);
   for (int ix= 0; ix < zela; ix++) {
     for (int iy= 0; iy < zela; iy++) {
       if (ix > zela - iy)
         ribua.set(iy, ix, ribua.get(zela -ix -1, zela - iy -1));
     }
   }
-  image(ribua, qrSize -zela/2, qrSize -zela/2);
+  image(ribua, width -zela/2, height -zela/2);
 
   // 4th corner
-  ribua = get(0, qrSize -zela, zela, zela);
+  ribua = get(0, height -zela, zela, zela);
   for (int ix= 0; ix < zela; ix++) {
     for (int iy= 0; iy < zela; iy++) {
       if (ix < iy)
         ribua.set(ix, iy, ribua.get(iy, ix));
     }
   }
-  image(ribua, zela/2, qrSize -zela/2);
+  image(ribua, zela/2, height -zela/2);
+  popMatrix();
 }
