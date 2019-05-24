@@ -10,7 +10,7 @@ PImage sqrSource;
 PGraphics buf;
 PGraphics toCopyImg;
 boolean shouldRotate=false;
-boolean pinot = false;
+boolean pinot = true;
 int qrSize;
 
 color bg = 0;
@@ -52,7 +52,7 @@ void draw() {
   color ccm = get(0, 0);
   fill(ccm);
   noStroke();
-  ellipse(0, 0, 10.0,10.0);
+  ellipse(0, 0, 8.0,8.0);
 }
 
 public void initit() {
