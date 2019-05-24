@@ -49,7 +49,7 @@ void draw() {
     SetCorners();
   }
   // setup circle in the middle
-  color ccm = get(width/2, height/2);
+  color ccm = get(0, 0);
   fill(ccm);
   noStroke();
   ellipse(0, 0, 10.0,10.0);
